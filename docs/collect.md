@@ -66,8 +66,6 @@ openipahound validate ./out
 
 ## Common Flags
 
-The short flags are intentionally limited to the options users type most often.
-
 | Option | Purpose |
 | --- | --- |
 | `collect ipa.example.test` | FreeIPA LDAP server target, as a hostname or IP address. |
@@ -79,8 +77,6 @@ The short flags are intentionally limited to the options users type most often.
 | `-c`, `--only` | Collect only selected modules or aliases. |
 
 ## Advanced Flags
-
-These stay long-form so commands remain readable at a glance.
 
 | Option | Purpose |
 | --- | --- |
