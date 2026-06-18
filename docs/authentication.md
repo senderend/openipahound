@@ -49,15 +49,13 @@ If the env file includes `IPA_COLLECTOR_PASSWORD` or `IPA_ADMIN_PASSWORD`, omit
 
 ## Collection Visibility
 
-The most complete collection uses an admin or read-capable identity that can
+The most complete collection requires an admin or read-capable identity that can
 read FreeIPA users, groups, hosts, hostgroups, services, HBAC rules, sudo rules,
 and service key-control attributes.
 
 A lower-privilege collector may still produce useful nodes and membership, but
 some edges can be incomplete. In particular, service key-control, delegation
-flags, and privileged service attributes may require more visibility. Treat
-missing edges from low-privilege collection as unknown, not as proof the right
-does not exist.
+flags, and privileged service attributes may require more visibility.
 
 Use `examples/env.example` as a starting point for repeatable runs and keep real
 secrets out of git.
