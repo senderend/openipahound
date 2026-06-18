@@ -76,17 +76,3 @@ which non-SSH/non-sudo services deserve their own action-specific paths.
 RBAC action modeling: preserve the role to privilege to permission chain while
 future work classifies specific permission families such as user lifecycle,
 password, SSH key, Kerberos principal, certificate, host, and service control.
-
-## Promotion Criteria
-
-A research relationship should become a default pathfinding edge only when it is
-narrow enough to be useful and reproducible. The preferred promotion path is:
-
-1. Collect the relevant FreeIPA source facts.
-2. Add saved-query or object-review coverage.
-3. Prove a concrete operator workflow.
-4. Capture cleanup and side effects.
-5. Update the schema, docs, and validation tests together.
-
-Until then, these relationships remain review data: visible, queryable, and
-useful, but not treated as default attack-path traversal.
