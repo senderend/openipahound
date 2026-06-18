@@ -220,4 +220,4 @@ OpenIPAHound is licensed under the Apache License, Version 2.0. See
 
 A big shoutout to PT SWARM for their FreeIPA attack-path research and the
 original [IPAHound](https://github.com/IPAHound/IPAHound) implementation. While their
-work served as an inspiration, reference, and guide to bring FreeIPA support to OpenGraph, no code was reused or ported from their project. Check out their excellent blog [here](https://swarm.ptsecurity.com/thinking-in-graphs-with-ipahound/)
+work served as an inspiration, reference, and guide to bring FreeIPA support to OpenGraph, no code was reused or ported from their project. Check out their excellent blog from Mikhail Sukhov [here](https://swarm.ptsecurity.com/thinking-in-graphs-with-ipahound/).
