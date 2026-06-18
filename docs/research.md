@@ -23,31 +23,6 @@ These relationships are available for Cypher, saved queries, and object review.
 They are not included in normal pathfinding unless the schema marks the
 relationship as traversable.
 
-That boundary matters: OpenIPAHound records the relevant directory fact, not the
-entire target-use workflow. For example, a delegation edge preserves delegation
-directory state, a certificate edge preserves CA ACL/profile scope, and a
-replication edge preserves replication-control context. Future pathfinding
-promotion should happen only after the operator workflow is narrow and
-reproducible.
-
-## Why They Stay Non-Traversable
-
-The advanced FreeIPA areas do not all collapse into a single "control" edge.
-For example, target-side delegation writes are different from source service
-identity control, certificate enrollment is different from a working PKINIT
-login, and a permission name is not always enough to prove the affected object,
-right, target, filter, or exclusion.
-
-OpenIPAHound keeps this data visible without turning it into default pathfinding
-until each promoted relationship can answer:
-
-- What exact FreeIPA source object or attribute produced the edge?
-- What action does the relationship actually allow?
-- What additional identity, service, key, certificate, or host state is needed?
-- What command path demonstrates the result?
-- What cleanup or side effect exists?
-- Does the relationship compose cleanly with the rest of the graph?
-
 ## Follow-Up Lanes
 
 Delegation and S4U: preserve `IPA_AllowedToDelegate` and `IPA_AddRBCD` as review
