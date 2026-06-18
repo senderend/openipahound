@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 23 Research - Trust And Replication",
+  "description": "Shows AD trust context and replication-control relationships. IPA_TrustedBy and IPA_DCSync are non-traversable because hybrid AD/IPA paths and replication secret handling need separate validation.",
+  "query": "MATCH p=(source)-[edge:IPA_TrustedBy|IPA_DCSync]->(env:IPA_Environment)\nRETURN p,\n       coalesce(source.domain, source.cn, source.uid, source.principal, source.fqdn) AS source_name,\n       env.domain AS freeipa_domain,\n       type(edge) AS relationship_type\nLIMIT 1000"
+}

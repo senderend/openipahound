@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 13 Support - Node Kind Inventory",
+  "description": "Shows OpenIPAHound custom nodes so users can quickly inspect imported FreeIPA object kinds and their UI icons.",
+  "query": "MATCH (n)\nWHERE n:IPA_Environment\n   OR n:IPA_User\n   OR n:IPA_Group\n   OR n:IPA_Role\n   OR n:IPA_Privilege\n   OR n:IPA_Permission\n   OR n:IPA_CA\n   OR n:IPA_CertificateTemplate\n   OR n:IPA_SELinux\n   OR n:IPA_TrustedDomain\n   OR n:IPA_Computer\n   OR n:IPA_Service\n   OR n:IPA_HostGroup\nRETURN n\nLIMIT 1000"
+}

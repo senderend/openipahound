@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openipahound"
+version = "0.1.0"
+description = "Community FreeIPA to BloodHound OpenGraph collector"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = [
+    "ldap3>=2.9.1,<3",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+]
+
+[project.optional-dependencies]
+kerberos = [
+    "cryptography>=41,<46",
+    "gssapi>=1.8,<2",
+]
+
+[project.scripts]
+openipahound = "openipahound.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+openipahound = ["schemas/*.json"]

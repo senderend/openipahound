@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 22 Research - ManagedBy Control",
+  "description": "Shows managedBy-derived object-control context. IPA_Owns is non-traversable because managed host, service, and object-control behavior need target-specific validation.",
+  "query": "MATCH p=(manager)-[owns:IPA_Owns]->(target)\nWHERE manager:IPA_User OR manager:IPA_Group OR manager:IPA_Service OR manager:IPA_Computer OR manager:IPA_HostGroup\nRETURN p,\n       coalesce(manager.uid, manager.cn, manager.principal, manager.fqdn) AS manager_name,\n       coalesce(target.uid, target.cn, target.principal, target.fqdn, target.domain) AS target_name,\n       owns.source AS source\nLIMIT 1000"
+}

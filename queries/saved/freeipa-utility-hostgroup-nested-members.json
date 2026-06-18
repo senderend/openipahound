@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 94 Utility - Hostgroup Nested Members",
+  "description": "Expands computer/hostgroup membership up to three IPA_MemberOf hops for every FreeIPA hostgroup. Use this to explain why a host is inside an HBAC or sudo target set.",
+  "query": "MATCH p=(member)-[:IPA_MemberOf*1..3]->(hostgroup:IPA_HostGroup)\nWHERE member:IPA_Computer OR member:IPA_HostGroup\nRETURN p, hostgroup.cn AS hostgroup_cn, coalesce(member.fqdn, member.cn) AS member_name\nLIMIT 1000"
+}

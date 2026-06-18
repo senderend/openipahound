@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 21 Research - Certificate Enrollment",
+  "description": "Shows principals that can enroll collected FreeIPA certificate templates through CA ACL scope. IPA_Enroll is non-traversable because PKINIT and service-certificate target use need separate validation.",
+  "query": "MATCH p=(principal)-[enroll:IPA_Enroll]->(template:IPA_CertificateTemplate)\nWHERE principal:IPA_User OR principal:IPA_Group OR principal:IPA_Service OR principal:IPA_Computer OR principal:IPA_HostGroup\nRETURN p,\n       coalesce(principal.uid, principal.cn, principal.principal, principal.fqdn) AS principal_name,\n       template.cn AS certificate_template,\n       enroll.ca AS ca\nLIMIT 1000"
+}

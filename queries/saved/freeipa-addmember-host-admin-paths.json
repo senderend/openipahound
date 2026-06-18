@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 02 Path - AddMember To Host Admin",
+  "description": "Finds principals that can add members to a group which has, or inherits, both SSH and sudo access to the same host. Validate by testing the membership change, refreshed login state, host access, sudo behavior, and cleanup.",
+  "query": "MATCH add_path=(controller)-[add_member:IPA_AddMember]->(managed_group:IPA_Group)\nWHERE controller:IPA_User OR controller:IPA_Group OR controller:IPA_Service OR controller:IPA_Computer\nMATCH group_path=(managed_group)-[:IPA_MemberOf*0..3]->(access_scope:IPA_Group)\nMATCH ssh_path=(access_scope)-[ssh:IPA_CanSSH]->(host:IPA_Computer)\nMATCH sudo_path=(access_scope)-[sudo:IPA_CanSUDO]->(host)\nRETURN add_path, group_path, ssh_path, sudo_path,\n       coalesce(controller.uid, controller.cn, controller.principal, controller.fqdn) AS controller_name,\n       managed_group.cn AS managed_group,\n       access_scope.cn AS access_scope,\n       host.fqdn AS host_fqdn,\n       ssh.hbacrule AS hbac_rule,\n       sudo.sudorule AS sudo_rule,\n       sudo.nopassword AS sudo_nopassword\nLIMIT 1000"
+}

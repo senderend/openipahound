@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 03 Control - Service Key Control",
+  "description": "Finds principals with modeled read-key or rotate-key control over FreeIPA service principals. Validate by retrieving or creating the keytab, initializing as that principal, proving the Kerberos identity, and cleaning up.",
+  "query": "MATCH p=(principal)-[control:IPA_ReadKerberosKey|IPA_ForceChangePassword]->(service:IPA_Service)\nWHERE principal:IPA_User OR principal:IPA_Group OR principal:IPA_Service OR principal:IPA_Computer\nRETURN p,\n       coalesce(principal.uid, principal.cn, principal.principal, principal.fqdn) AS principal_name,\n       service.principal AS service_principal,\n       service.hostfqdn AS service_host,\n       type(control) AS control_type,\n       control.sourceattribute AS source_attribute\nLIMIT 1000"
+}

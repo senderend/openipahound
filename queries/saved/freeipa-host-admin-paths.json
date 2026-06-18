@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 01 Path - Host Admin",
+  "description": "Finds users or groups that can reach a host with both modeled SSH and sudo access. Use the returned principals and hosts in BloodHound Pathfinding, then validate host login and sudo behavior in the target environment.",
+  "query": "MATCH membership=(principal)-[:IPA_MemberOf*0..3]->(access_scope)\nWHERE (principal:IPA_User OR principal:IPA_Group)\n  AND (access_scope:IPA_User OR access_scope:IPA_Group)\nMATCH ssh_path=(access_scope)-[ssh:IPA_CanSSH]->(host:IPA_Computer)\nMATCH sudo_path=(access_scope)-[sudo:IPA_CanSUDO]->(host)\nRETURN membership, ssh_path, sudo_path,\n       coalesce(principal.uid, principal.cn) AS principal_name,\n       coalesce(access_scope.uid, access_scope.cn) AS access_scope_name,\n       host.fqdn AS host_fqdn,\n       ssh.hbacrule AS hbac_rule,\n       sudo.sudorule AS sudo_rule,\n       sudo.nopassword AS sudo_nopassword\nLIMIT 1000"
+}

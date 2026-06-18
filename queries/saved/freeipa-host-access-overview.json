@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 10 Support - Host Access Overview",
+  "description": "Shows users and groups with modeled SSH or sudo access to FreeIPA hosts. Use this as the first host-access inspection query; aggregate HBAC service detail stays in the research query because it is service-specific context, not default pathfinding.",
+  "query": "MATCH p=(principal)-[access:IPA_CanSSH|IPA_CanSUDO]->(host:IPA_Computer)\nWHERE principal:IPA_User OR principal:IPA_Group\nRETURN p, type(access) AS access_type, access.hbacrule AS hbac_rule, access.sudorule AS sudo_rule, access.nopassword AS sudo_nopassword\nLIMIT 1000"
+}

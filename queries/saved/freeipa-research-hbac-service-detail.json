@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 24 Research - HBAC Service Detail",
+  "description": "Shows aggregate HBAC service/rule detail beyond SSH and sudo, excluding only edges where systemd-user is the sole service. IPA_CanHBACService is non-traversable by design because service-level HBAC detail needs service-specific interpretation.",
+  "query": "MATCH p=(principal)-[access:IPA_CanHBACService]->(host:IPA_Computer)\nWHERE (principal:IPA_User OR principal:IPA_Group)\n  AND NOT (access.servicecount = 1 AND 'systemd-user' IN access.services)\n  AND NOT (access.servicecount = 1 AND 'CanSystemdUser' IN access.relationships)\nRETURN p,\n       coalesce(principal.uid, principal.cn) AS principal_name,\n       host.fqdn AS host_fqdn,\n       access.relationships AS relationships,\n       access.services AS services,\n       access.hbacrules AS hbacrules,\n       access.grants AS grants,\n       access.servicecount AS service_count,\n       access.rulecount AS rule_count\nLIMIT 1000"
+}

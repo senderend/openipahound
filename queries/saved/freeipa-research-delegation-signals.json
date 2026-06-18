@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 20 Research - Delegation Signals",
+  "description": "Shows FreeIPA delegation-control and S4U-related edges. IPA_AddRBCD and IPA_AllowedToDelegate are non-traversable because delegation impact depends on source service identity control and target-protocol validation.",
+  "query": "MATCH p=(source)-[edge:IPA_AddRBCD|IPA_AllowedToDelegate]->(target:IPA_Service)\nWHERE source:IPA_User OR source:IPA_Group OR source:IPA_Service OR source:IPA_Computer\nRETURN p,\n       coalesce(source.uid, source.cn, source.principal, source.fqdn) AS source_name,\n       target.principal AS target_service,\n       type(edge) AS relationship_type\nLIMIT 1000"
+}

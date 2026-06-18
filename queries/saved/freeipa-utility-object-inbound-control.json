@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 98 Utility - Object Inbound Control",
+  "description": "Shows who has direct modeled control or access edges into FreeIPA objects. Use the group and hostgroup member queries separately when the inbound question is 'who is a member of this group?'",
+  "query": "MATCH p=(controller)-[r:IPA_AddMember|IPA_Owns|IPA_AllowedToDelegate|IPA_AddRBCD|IPA_ForceChangePassword|IPA_ReadKerberosKey|IPA_Enroll|IPA_DCSync|IPA_CanSSH|IPA_CanSUDO|IPA_HasRole]->(object)\nWHERE controller:IPA_User OR controller:IPA_Group OR controller:IPA_Service OR controller:IPA_Computer\nRETURN p, coalesce(controller.uid, controller.cn, controller.principal, controller.fqdn) AS controller_name, type(r) AS relationship_type\nLIMIT 1000"
+}

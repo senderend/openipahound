@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 12 Support - User Group Host Admin Paths",
+  "description": "Finds users that reach host SSH and sudo access through FreeIPA group membership.",
+  "query": "MATCH p1=(user:IPA_User)-[:IPA_MemberOf*1..3]->(group:IPA_Group)\nMATCH p2=(group)-[:IPA_CanSSH]->(host:IPA_Computer)\nMATCH p3=(group)-[:IPA_CanSUDO]->(host)\nRETURN p1,p2,p3\nLIMIT 1000"
+}

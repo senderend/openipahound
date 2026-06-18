@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 11 Support - SSH And Sudo Same Principal",
+  "description": "Finds users or groups that can both SSH to a FreeIPA host and use sudo on that same host.",
+  "query": "MATCH p1=(principal)-[:IPA_CanSSH]->(host:IPA_Computer)\nMATCH p2=(principal)-[:IPA_CanSUDO]->(host)\nWHERE principal:IPA_User OR principal:IPA_Group\nRETURN p1,p2\nLIMIT 1000"
+}

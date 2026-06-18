@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 90 Utility - Group Direct Members",
+  "description": "Shows direct IPA_User and IPA_Group members for every FreeIPA group. This is the OpenGraph replacement for opening an AD group's Members panel; to browse one clicked group, copy the Cypher and add a group.cn filter from the Entity Panel.",
+  "query": "MATCH p=(member)-[member_edge:IPA_MemberOf]->(group:IPA_Group)\nWHERE member:IPA_User OR member:IPA_Group\nRETURN p, group.cn AS group_cn, coalesce(member.uid, member.cn, member.principal, member.fqdn) AS member_name, member_edge.source AS source\nLIMIT 1000"
+}

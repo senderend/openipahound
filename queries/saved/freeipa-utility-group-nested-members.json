@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 91 Utility - Group Nested Members",
+  "description": "Expands user/group membership up to three IPA_MemberOf hops for every FreeIPA group. Use this when direct members are not enough and nested group membership may be carrying access.",
+  "query": "MATCH p=(member)-[:IPA_MemberOf*1..3]->(group:IPA_Group)\nWHERE member:IPA_User OR member:IPA_Group\nRETURN p, group.cn AS group_cn, coalesce(member.uid, member.cn, member.principal, member.fqdn) AS member_name\nLIMIT 1000"
+}

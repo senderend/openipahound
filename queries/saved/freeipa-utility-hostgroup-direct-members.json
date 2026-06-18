@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 93 Utility - Hostgroup Direct Members",
+  "description": "Shows direct IPA_Computer and IPA_HostGroup members for every FreeIPA hostgroup. Use this the same way as group direct members when reviewing host targeting and inherited HBAC/sudo scope.",
+  "query": "MATCH p=(member)-[member_edge:IPA_MemberOf]->(hostgroup:IPA_HostGroup)\nWHERE member:IPA_Computer OR member:IPA_HostGroup\nRETURN p, hostgroup.cn AS hostgroup_cn, coalesce(member.fqdn, member.cn) AS member_name, member_edge.source AS source\nLIMIT 1000"
+}

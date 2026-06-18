@@ -1,0 +1,209 @@
+{
+  "schema": {
+    "name": "OpenIPAHound",
+    "display_name": "OpenIPAHound",
+    "version": "v0.1.0",
+    "namespace": "IPA"
+  },
+  "node_kinds": [
+    {
+      "name": "IPA_Environment",
+      "display_name": "FreeIPA Environment",
+      "description": "A FreeIPA realm or domain collected by OpenIPAHound.",
+      "is_display_kind": true,
+      "icon": "sitemap",
+      "color": "#2563eb"
+    },
+    {
+      "name": "IPA_User",
+      "display_name": "IPA User",
+      "description": "A FreeIPA user account collected from cn=users.",
+      "is_display_kind": true,
+      "icon": "user",
+      "color": "#0f766e"
+    },
+    {
+      "name": "IPA_Group",
+      "display_name": "IPA Group",
+      "description": "A FreeIPA user group collected from cn=groups.",
+      "is_display_kind": true,
+      "icon": "users",
+      "color": "#7c3aed"
+    },
+    {
+      "name": "IPA_Role",
+      "display_name": "IPA Role",
+      "description": "A FreeIPA role collected from cn=roles.",
+      "is_display_kind": true,
+      "icon": "shield",
+      "color": "#4f46e5"
+    },
+    {
+      "name": "IPA_Privilege",
+      "display_name": "IPA Privilege",
+      "description": "A FreeIPA privilege collected from cn=privileges.",
+      "is_display_kind": true,
+      "icon": "shield",
+      "color": "#9333ea"
+    },
+    {
+      "name": "IPA_Permission",
+      "display_name": "IPA Permission",
+      "description": "A FreeIPA permission collected from cn=permissions.",
+      "is_display_kind": true,
+      "icon": "lock",
+      "color": "#0d9488"
+    },
+    {
+      "name": "IPA_CA",
+      "display_name": "IPA CA",
+      "description": "A FreeIPA certificate authority collected from cn=cas.",
+      "is_display_kind": true,
+      "icon": "certificate",
+      "color": "#2563eb"
+    },
+    {
+      "name": "IPA_CertificateTemplate",
+      "display_name": "IPA Certificate Template",
+      "description": "A FreeIPA certificate profile that can be granted by CA ACLs.",
+      "is_display_kind": true,
+      "icon": "certificate",
+      "color": "#16a34a"
+    },
+    {
+      "name": "IPA_SELinux",
+      "display_name": "IPA SELinux Map",
+      "description": "A FreeIPA SELinux user map collected from cn=usermap,cn=selinux.",
+      "is_display_kind": true,
+      "icon": "fingerprint",
+      "color": "#475569"
+    },
+    {
+      "name": "IPA_TrustedDomain",
+      "display_name": "IPA Trusted Domain",
+      "description": "A trusted Active Directory domain known to FreeIPA.",
+      "is_display_kind": true,
+      "icon": "globe",
+      "color": "#7c2d12"
+    },
+    {
+      "name": "IPA_Computer",
+      "display_name": "IPA Computer",
+      "description": "A FreeIPA enrolled host collected from cn=computers.",
+      "is_display_kind": true,
+      "icon": "desktop",
+      "color": "#ea580c"
+    },
+    {
+      "name": "IPA_Service",
+      "display_name": "IPA Service",
+      "description": "A FreeIPA service principal collected from cn=services.",
+      "is_display_kind": true,
+      "icon": "key",
+      "color": "#be123c"
+    },
+    {
+      "name": "IPA_HostGroup",
+      "display_name": "IPA Host Group",
+      "description": "A FreeIPA hostgroup collected from cn=hostgroups.",
+      "is_display_kind": true,
+      "icon": "server",
+      "color": "#0891b2"
+    }
+  ],
+  "relationship_kinds": [
+    {
+      "name": "IPA_MemberOf",
+      "description": "Object is a direct member of a FreeIPA group or hostgroup.",
+      "is_traversable": true
+    },
+    {
+      "name": "IPA_HasRole",
+      "description": "Principal has a FreeIPA role assignment derived from role membership/memberOf data.",
+      "is_traversable": true
+    },
+    {
+      "name": "IPA_HasPrivilege",
+      "description": "FreeIPA role has a privilege derived from privilege membership/memberOf data.",
+      "is_traversable": true
+    },
+    {
+      "name": "IPA_ContainsPermission",
+      "description": "FreeIPA privilege contains a permission derived from permission membership/memberOf data.",
+      "is_traversable": true
+    },
+    {
+      "name": "IPA_AddMember",
+      "description": "Principal can add members to a FreeIPA group through memberManager permission.",
+      "is_traversable": true
+    },
+    {
+      "name": "IPA_Owns",
+      "description": "Object controls another FreeIPA object through a managedBy attribute.",
+      "is_traversable": false
+    },
+    {
+      "name": "IPA_AllowedToDelegate",
+      "description": "Service principal can delegate to another service through FreeIPA general constrained delegation or target-side resource delegation.",
+      "is_traversable": false
+    },
+    {
+      "name": "IPA_AddRBCD",
+      "description": "Principal can edit a FreeIPA service's target-side resource delegation ACL through write_delegation permission.",
+      "is_traversable": false
+    },
+    {
+      "name": "IPA_ForceChangePassword",
+      "description": "Principal can replace a FreeIPA service key through write_keys permission.",
+      "is_traversable": true
+    },
+    {
+      "name": "IPA_ReadKerberosKey",
+      "description": "Principal can read a FreeIPA service key through read_keys permission.",
+      "is_traversable": true
+    },
+    {
+      "name": "IPA_Enroll",
+      "description": "Principal can enroll a FreeIPA certificate template through an enabled CA ACL.",
+      "is_traversable": false
+    },
+    {
+      "name": "IPA_TrustedBy",
+      "description": "Trusted external domain can authenticate to the FreeIPA environment through an AD trust.",
+      "is_traversable": false
+    },
+    {
+      "name": "IPA_DCSync",
+      "description": "Replication administrator permission implies DC-equivalent synchronization capability in the FreeIPA environment.",
+      "is_traversable": false
+    },
+    {
+      "name": "IPA_CanSSH",
+      "description": "Principal can establish an SSH session to a FreeIPA host through an enabled HBAC rule.",
+      "is_traversable": true
+    },
+    {
+      "name": "IPA_CanHBACService",
+      "description": "Principal has FreeIPA HBAC service authorization aggregated for a principal-host pair; non-traversable because service meaning is protocol-specific.",
+      "is_traversable": false
+    },
+    {
+      "name": "IPA_CanSUDO",
+      "description": "Principal can use sudo on a FreeIPA host through a matching sudo rule and HBAC sudo grant.",
+      "is_traversable": true
+    }
+  ],
+  "environments": [
+    {
+      "environment_kind": "IPA_Environment",
+      "source_kind": "OpenIPAHound",
+      "principal_kinds": [
+        "IPA_User",
+        "IPA_Group",
+        "IPA_Computer",
+        "IPA_Service"
+      ]
+    }
+  ],
+  "relationship_findings": []
+}

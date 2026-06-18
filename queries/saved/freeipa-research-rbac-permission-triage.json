@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 25 Research - RBAC Permission Triage",
+  "description": "Expands FreeIPA RBAC paths from principals to permission objects so unusual IPA directory permissions can be inspected. These are structural RBAC chains, not generic LDAP-write abuse edges.",
+  "query": "MATCH p=(principal)-[:IPA_MemberOf|IPA_HasRole|IPA_HasPrivilege|IPA_ContainsPermission*1..6]->(permission:IPA_Permission)\nWHERE principal:IPA_User OR principal:IPA_Group OR principal:IPA_Service OR principal:IPA_Computer\nRETURN p,\n       coalesce(principal.uid, principal.cn, principal.principal, principal.fqdn) AS principal_name,\n       permission.cn AS permission_name,\n       permission.rights AS rights,\n       permission.target AS target,\n       permission.targetfilters AS target_filters\nLIMIT 1000"
+}

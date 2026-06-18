@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 97 Utility - Principal Effective Expansion",
+  "description": "Expands membership and RBAC inheritance from users, groups, services, and computers. Use this to answer 'what does this principal inherit?' before pivoting to the stricter outbound-control or host-access queries.",
+  "query": "MATCH p=(principal)-[:IPA_MemberOf|IPA_HasRole|IPA_HasPrivilege|IPA_ContainsPermission*1..6]->(target)\nWHERE principal:IPA_User OR principal:IPA_Group OR principal:IPA_Service OR principal:IPA_Computer\nRETURN p, coalesce(principal.uid, principal.cn, principal.principal, principal.fqdn) AS principal_name\nLIMIT 1000"
+}

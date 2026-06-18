@@ -1,0 +1,5 @@
+{
+  "name": "OpenIPAHound 96 Utility - Principal Outbound Control",
+  "description": "Shows direct outbound access and control edges from users, groups, services, and computers. This is the closest OpenGraph utility to browsing a selected principal's outbound permissions in native BloodHound.",
+  "query": "MATCH p=(principal)-[r:IPA_AddMember|IPA_Owns|IPA_AllowedToDelegate|IPA_AddRBCD|IPA_ForceChangePassword|IPA_ReadKerberosKey|IPA_Enroll|IPA_DCSync|IPA_CanSSH|IPA_CanSUDO|IPA_HasRole]->(target)\nWHERE principal:IPA_User OR principal:IPA_Group OR principal:IPA_Service OR principal:IPA_Computer\nRETURN p, coalesce(principal.uid, principal.cn, principal.principal, principal.fqdn) AS principal_name, type(r) AS relationship_type\nLIMIT 1000"
+}
