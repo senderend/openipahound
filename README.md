@@ -211,8 +211,6 @@ These areas are not placeholders, they're backed by LDAP-readable FreeIPA
 directory objects and attributes. Several have promising tradecraft
 paths; future research will flesh these out with tradecraft discovery, attacker validation, and abuse info.
 
-See [research.md](docs/research.md) for the detailed research map.
-
 ## License
 
 OpenIPAHound is licensed under the Apache License, Version 2.0. See
